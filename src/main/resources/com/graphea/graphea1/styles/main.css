@@ -1,0 +1,60 @@
+.root {
+    -fx-background-color: #1E1E1E;
+}
+
+.bg-gray {
+    -fx-background-color: #282828;
+}
+
+.bg-dark {
+    -fx-background-color: #1E1E1E;
+}
+
+
+
+.split-pane {
+    -fx-padding: 0;
+}
+
+.split-pane:horizontal > .split-pane-divider {
+    -fx-background-color: black;
+    -fx-padding: 2px ;
+}
+.split-pane:vertical > .split-pane-divider {
+    -fx-background-color: black;
+    -fx-padding: 2px ;
+}
+
+
+
+
+
+
+/**
+
+**/
+
+#splitScrollLeft > .viewport {
+    -fx-background-color: #282828;
+}
+
+#splitScrollRight > .viewport {
+    -fx-background-color: #1E1E1E;
+}
+
+#headerPane > .label {
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+
+#CentralPane > .text-field {
+    -fx-text-fill: cyan;
+    -fx-background-color: transparent;
+}
+
+
+#BottomPane > .label {
+    -fx-text-fill: #1FFF00;
+}
