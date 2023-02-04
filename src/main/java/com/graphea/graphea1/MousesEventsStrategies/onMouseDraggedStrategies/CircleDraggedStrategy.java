@@ -1,43 +1,34 @@
-package com.graphea.graphea1.MouseEvents;
+package com.graphea.graphea1.MousesEventsStrategies.onMouseDraggedStrategies;
 
 import com.graphea.graphea1.Singletons.Providers.SingletonProvider;
 import com.graphea.graphea1.Singletons.Providers.SingletonWindow;
 import com.graphea.graphea1.Singletons.Providers.SingletonWindowCircle;
-import com.graphea.graphea1.Singletons.Providers.SingletonWindowInterface;
 import com.graphea.graphea1.dataEstructures.graphs.DirectedGraph.Vertex;
-import javafx.scene.Parent;
 import javafx.scene.input.MouseButton;
-import javafx.stage.Stage;
 
-public class OnMouseDragged {
-    private SingletonWindowInterface onMouse;
+public class CircleDraggedStrategy implements OnDraggedInterfaceStrategy{
+
     private SingletonProvider provider = SingletonProvider.getInstance();
     private SingletonWindow window = SingletonWindow.getInstance();
     private SingletonWindowCircle windowCircle = SingletonWindowCircle.getInstance();
+    private Vertex circle;
 
-    public OnMouseDragged (SingletonWindowInterface onMouse) {
-        this.onMouse = onMouse;
+    public CircleDraggedStrategy(Vertex circle) {
+        this.circle = circle;
     }
 
-    public void OnMouseDragged (Parent root, Stage stage) {
-        root.setOnMouseDragged(evt -> {
-            stage.setX(evt.getScreenX() - onMouse.getX());
-            stage.setY(evt.getScreenY() - onMouse.getY());
-        });
-    }
-
-    public void OnMouseDragged (Vertex circle) {
+    @Override
+    public void mouseDragged () {
         circle.setOnMouseDragged(mouseEvent -> {
             if (mouseEvent.getButton() == MouseButton.PRIMARY) {
                 windowCircle.setX(mouseEvent.getSceneX() - provider.getSplitScrollLeft().getWidth());
                 windowCircle.setY(mouseEvent.getSceneY() - provider.getHeaderPane().getHeight());
 
-                circle.getCoords().setCoords(windowCircle.getX() + 15, windowCircle.getY());
-                circle.getPopUpMenu().setCoords(mouseEvent.getSceneX() - 15, mouseEvent.getSceneY());
+                circle.notifyObservers();
 
                 circle.setTranslate(windowCircle.getX() - window.getX(), windowCircle.getY() - window.getY());
                 circle.setAxis(windowCircle.getX(), windowCircle.getY());
-                circle.moveEdgesAdjacents();
+                //circle.moveEdgesAdjacents();
             }
         });
     }

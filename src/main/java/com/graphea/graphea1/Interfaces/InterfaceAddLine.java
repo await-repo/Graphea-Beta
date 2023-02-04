@@ -10,8 +10,10 @@ public interface InterfaceAddLine extends InterfaceAdd {
     SingletonProvider provider = SingletonProvider.getInstance();
     default void addLine (Vertex start, Vertex end) {
         Edge line = new Edge(start, end);
-        start.getEdgesAdjacents().add(line); //Agregamos todas las aristas respectivas el Nodo
-        end.getEdgesAdjacents().add(line); //Agregamos todas las aristas respectivas el Nodo
+
+        start.registerObserver(line);
+        end.registerObserver(line);
+
         start.setFill(Color.WHITE);
         end.setFill(Color.WHITE);
 

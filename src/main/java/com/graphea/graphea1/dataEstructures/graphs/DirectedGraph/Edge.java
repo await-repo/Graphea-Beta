@@ -1,26 +1,32 @@
 package com.graphea.graphea1.dataEstructures.graphs.DirectedGraph;
 
+import com.graphea.graphea1.Components.PopUp.PopUp;
+import com.graphea.graphea1.Observer.Observer;
 import com.graphea.graphea1.Singletons.DataStructure.SingletonGraph;
-import com.graphea.graphea1.Components.PopUpLine;
-import com.graphea.graphea1.MouseEvents.OnMouseClicked;
-import com.graphea.graphea1.MouseEvents.OnMouseEntered;
-import com.graphea.graphea1.MouseEvents.OnMouseExited;
-import com.graphea.graphea1.Singletons.Figure.SingletonLine;
+import com.graphea.graphea1.Components.PopUp.PopUpLine;
+import com.graphea.graphea1.MouseEvents.OnMouseClickedContext;
+import com.graphea.graphea1.MouseEvents.OnMouseEnteredContext;
+import com.graphea.graphea1.MouseEvents.OnMouseExitedContext;
+import com.graphea.graphea1.MousesEventsStrategies.onMouseClickedStrategies.EdgeClickedStrategy;
+import com.graphea.graphea1.MousesEventsStrategies.onMouseEnteredStrategies.EdgeEnteredStrategy;
+import com.graphea.graphea1.MousesEventsStrategies.onMouseExitedStrategies.EdgeExitedStrategy;
+import com.graphea.graphea1.Singletons.Providers.SingletonWindowCircle;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 
 import java.io.Serializable;
 
-public class Edge extends Line implements Serializable {
+public class Edge extends Line implements Serializable, Observer {
 
     private Vertex start;
     private Vertex end;
 
 
-    private transient PopUpLine popUpMenu = new PopUpLine(this);
-    private transient OnMouseEntered mouseEntered = new OnMouseEntered(SingletonLine.getInstance());
-    private transient OnMouseExited mouseExited = new OnMouseExited(SingletonLine.getInstance());
-    private transient OnMouseClicked mouseClicked = new OnMouseClicked(popUpMenu);
+    private transient PopUp popUpMenu = new PopUpLine(this);
+    private SingletonWindowCircle WindowCircle = SingletonWindowCircle.getInstance();
+    private transient OnMouseEnteredContext mouseEntered = new OnMouseEnteredContext();
+    private transient OnMouseExitedContext mouseExited = new OnMouseExitedContext();
+    private transient OnMouseClickedContext mouseClicked = new OnMouseClickedContext();
 
 
     public Edge(Vertex origin, Vertex destination) {
@@ -29,9 +35,9 @@ public class Edge extends Line implements Serializable {
 
         init();
 
-        mouseEntered.onMouseEntered(this);
-        mouseExited.onMouseExited(this);
-        mouseClicked.onMouseClicked(this);
+        mouseEntered.mouseEntered(new EdgeEnteredStrategy(this));
+        mouseExited.mouseExited(new EdgeExitedStrategy(this));
+        mouseClicked.mouseClicked(new EdgeClickedStrategy(this));
     }
 
     public void delete() {
@@ -79,8 +85,28 @@ public class Edge extends Line implements Serializable {
         this.setEndY(y);
     }
 
+    public PopUp getPopUpMenu() {
+        return popUpMenu;
+    }
+
+    public void setPopUpMenu(PopUpLine popUpMenu) {
+        this.popUpMenu = popUpMenu;
+    }
+
     @Override
     public String toString() {
         return "\n\t\t Edge{ start = " + start + ", end=" + end + " }";
+    }
+
+    @Override
+    public void update(Vertex circle) {
+        if (circle.isEqual(end)) {
+            setEndX(WindowCircle.getX());
+            setEndY(WindowCircle.getY());
+        }
+        if (circle.isEqual(start)) {
+            setStartX(WindowCircle.getX());
+            setStartY(WindowCircle.getY());
+        }
     }
 }

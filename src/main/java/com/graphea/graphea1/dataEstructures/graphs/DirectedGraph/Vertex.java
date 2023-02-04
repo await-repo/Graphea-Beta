@@ -1,14 +1,20 @@
 package com.graphea.graphea1.dataEstructures.graphs.DirectedGraph;
 
+import com.graphea.graphea1.Components.PopUp.PopUp;
+import com.graphea.graphea1.Observer.Observer;
+import com.graphea.graphea1.Observer.Subject;
 import com.graphea.graphea1.Singletons.DataStructure.SingletonGraph;
-import com.graphea.graphea1.Singletons.Providers.SingletonWindow;
 import com.graphea.graphea1.Singletons.Providers.SingletonWindowCircle;
-import com.graphea.graphea1.Components.Text;
-import com.graphea.graphea1.Components.PopUpCircle;
+import com.graphea.graphea1.Components.Text.Text;
+import com.graphea.graphea1.Components.PopUp.PopUpCircle;
 import com.graphea.graphea1.Interfaces.InterfacePin;
 import com.graphea.graphea1.Interfaces.InterfaceRemove;
 import com.graphea.graphea1.MouseEvents.*;
-import com.graphea.graphea1.Singletons.Figure.SingletonCircle;
+import com.graphea.graphea1.MousesEventsStrategies.onMouseClickedStrategies.CircleClickedStrategy;
+import com.graphea.graphea1.MousesEventsStrategies.onMouseDraggedStrategies.CircleDraggedStrategy;
+import com.graphea.graphea1.MousesEventsStrategies.onMouseEnteredStrategies.CircleEnteredStrategy;
+import com.graphea.graphea1.MousesEventsStrategies.onMouseExitedStrategies.CircleExitedStrategy;
+import com.graphea.graphea1.MousesEventsStrategies.onMousePressedStrategies.CirclePressedStrategy;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
@@ -16,26 +22,19 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Vertex extends Circle implements Serializable, InterfacePin, InterfaceRemove {
+public class Vertex extends Circle implements Serializable, InterfacePin, InterfaceRemove, Subject {
 
     private String value;
     private double xAxis, yAxis;
     private Text coords;
-    private List<Edge> edgesAdjacents = new ArrayList();
 
-
-
-    private SingletonCircle singleton = SingletonCircle.getInstance();
-    private SingletonWindow window = SingletonWindow.getInstance();
     private SingletonWindowCircle WindowCircle = SingletonWindowCircle.getInstance();
-
-
-    private transient PopUpCircle popUpMenu = new PopUpCircle(this);
-    private transient OnMouseExited mouseExited = new OnMouseExited(singleton);
-    private transient OnMouseEntered mouseEntered = new OnMouseEntered(singleton);
-    private transient OnMouseClicked mouseClicked = new OnMouseClicked(popUpMenu);
-    private transient OnMousePressed onMousePressed = new OnMousePressed(window);
-    private transient OnMouseDragged onMouseDragged = new OnMouseDragged(WindowCircle);
+    private transient PopUp popUpMenu = new PopUpCircle(this);
+    private transient OnMouseExitedContext mouseExited = new OnMouseExitedContext();
+    private transient OnMouseEnteredContext mouseEntered = new OnMouseEnteredContext();
+    private transient OnMouseClickedContext mouseClicked = new OnMouseClickedContext();
+    private transient OnMousePressedContext onMousePressedContext = new OnMousePressedContext();
+    private transient OnMouseDraggedContext onMouseDraggedContext = new OnMouseDraggedContext();
 
 
     public Vertex(double xAxis, double yAxis) {
@@ -45,15 +44,18 @@ public class Vertex extends Circle implements Serializable, InterfacePin, Interf
 
         init();
 
-        mouseEntered.onMouseEntered(this);
-        mouseExited.onMouseExited(this);
-        mouseClicked.onMouseClicked(this);
-        onMousePressed.OnMousePressed(this);
-        onMouseDragged.OnMouseDragged(this);
+        registerObserver(popUpMenu);
+        registerObserver(coords);
+
+        mouseEntered.mouseEntered(new CircleEnteredStrategy(this));
+        mouseExited.mouseExited(new CircleExitedStrategy(this));
+        mouseClicked.mouseClicked(new CircleClickedStrategy(this));
+        onMousePressedContext.mousePressed(new CirclePressedStrategy(this));
+        onMouseDraggedContext.mouseDragged(new CircleDraggedStrategy(this));
     }
 
     public void removeEdge (Edge edge) {
-        edgesAdjacents.remove(edge);
+        unregisterObserver(edge);
         remove(edge);
     }
 
@@ -70,19 +72,6 @@ public class Vertex extends Circle implements Serializable, InterfacePin, Interf
         this.setStroke(Color.BLACK);
     }
 
-    public void moveEdgesAdjacents () {
-        for (Edge edge: edgesAdjacents) {
-            if (isEqual(edge.getEnd())) {
-                edge.setEndX(WindowCircle.getX());
-                edge.setEndY(WindowCircle.getY());
-            }
-            if (isEqual(edge.getStart())) {
-                edge.setStartX(WindowCircle.getX());
-                edge.setStartY(WindowCircle.getY());
-            }
-        }
-    }
-
     public void setTranslate (double x, double y) {
         this.setTranslateX(x);
         this.setTranslateY(y);
@@ -97,12 +86,6 @@ public class Vertex extends Circle implements Serializable, InterfacePin, Interf
         return this.getxAxis() == vertex.getxAxis() && this.getyAxis() == vertex.getyAxis();
     }
 
-    public List<Edge> getEdgesAdjacents() {
-        return edgesAdjacents;
-    }
-    public void setEdgesAdjacents(List<Edge> edgesAdjacents) {
-        this.edgesAdjacents = edgesAdjacents;
-    }
     public String getValue() {
         return value;
     }
@@ -135,7 +118,7 @@ public class Vertex extends Circle implements Serializable, InterfacePin, Interf
         this.coords = coords;
     }
 
-    public PopUpCircle getPopUpMenu() {
+    public PopUp getPopUpMenu() {
         return popUpMenu;
     }
 
@@ -145,10 +128,29 @@ public class Vertex extends Circle implements Serializable, InterfacePin, Interf
 
     @Override
     public String toString() {
-        return "Node{" +
-                "value='" + value + '\'' +
-                ", xAxis=" + xAxis +
-                ", yAxis=" + yAxis +
-                '}';
+        return "Node{ value = '" + value + "', xAxis=" + xAxis +", yAxis=" + yAxis + "}";
     }
+
+
+
+
+    List<Observer> observerList = new ArrayList<Observer>();
+
+    @Override
+    public void registerObserver(Observer o) {
+        observerList.add(o);
+    }
+
+    @Override
+    public void unregisterObserver(Observer o) {
+        observerList.remove(observerList.indexOf(o));
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (Observer o: observerList) {
+            o.update(this);
+        }
+    }
+
 }

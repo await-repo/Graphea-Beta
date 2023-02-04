@@ -9,7 +9,7 @@ import com.graphea.graphea1.Singletons.Figure.SingletonLine;
 import com.graphea.graphea1.Singletons.Providers.SingletonProvider;
 import com.graphea.graphea1.Files.DeserializeObject;
 import com.graphea.graphea1.Files.DerializeObject;
-import com.graphea.graphea1.Components.Text;
+import com.graphea.graphea1.Components.Text.Text;
 import com.graphea.graphea1.Interfaces.InterfaceAddCircle;
 import com.graphea.graphea1.dataEstructures.graphs.DirectedGraph.Edge;
 import com.graphea.graphea1.dataEstructures.graphs.DirectedGraph.Vertex;

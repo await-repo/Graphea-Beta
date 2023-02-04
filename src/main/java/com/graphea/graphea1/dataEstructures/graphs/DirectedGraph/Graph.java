@@ -1,5 +1,6 @@
 package com.graphea.graphea1.dataEstructures.graphs.DirectedGraph;
 
+import com.graphea.graphea1.Observer.Observer;
 import com.graphea.graphea1.Singletons.Providers.SingletonProvider;
 import com.graphea.graphea1.Functional.Message;
 import com.graphea.graphea1.Interfaces.InterfaceAdd;
@@ -32,24 +33,24 @@ public class Graph extends Circle implements Serializable, InterfaceRemove, Inte
 
     public void insertEdge (Edge edge) {
         edges.add(edge);
-        provider.getTextAreaPane().appendText(">> Edge " + edge.getStart().getxAxis() + ", " +
-                edge.getStart().getyAxis() + ", " +
-                edge.getEnd().getxAxis() + ", " + edge.getEnd().getyAxis() + " Added \n\n");
-    }
-
-    public void delete () {
-
+        provider.getTextAreaPane().appendText(">> Edge " + edge.getStart().getxAxis() + ", " + edge.getStart().getyAxis() + ", " + edge.getEnd().getxAxis() + ", " + edge.getEnd().getyAxis() + " Added \n\n");
     }
 
     public void deleteVertex (Vertex node) {
         nodes.removeIf(aux -> aux == node);
         edges.removeIf(edge -> edge.getStart()== node || edge.getEnd() == node);
-        for (Edge edge: node.getEdgesAdjacents()) {
+
+        for (Observer o: node.observerList) {
+            if (o.getClass() != Edge.class) {
+                continue;
+            }
+            Edge edge = (Edge) o;
             if (node.isEqual(edge.getEnd()))
                 edge.getStart().removeEdge(edge);
             else
                 edge.getEnd().removeEdge(edge);
         }
+
         remove(node);
         remove(node.getCoords());
         Message msg = new Message(5, "Vertice Eliminado");
