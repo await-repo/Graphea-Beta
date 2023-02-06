@@ -5,7 +5,7 @@ import com.graphea.graphea1.Singletons.Providers.SingletonWindow;
 import javafx.scene.input.MouseButton;
 import javafx.scene.shape.Circle;
 
-public class CirclePressedStrategy implements OnMouseInterfaceStrategy {
+public class CirclePressedStrategy implements OnPressedInterfaceStrategy {
 
     private Circle circle;
     private SingletonWindow onMouse = SingletonWindow.getInstance();

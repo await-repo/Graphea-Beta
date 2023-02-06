@@ -1,6 +1,9 @@
 package com.graphea.graphea1.dataEstructures.graphs.DirectedGraph;
 
 import com.graphea.graphea1.Components.PopUp.PopUp;
+import com.graphea.graphea1.Components.Text.Text;
+import com.graphea.graphea1.Components.Text.TextName;
+import com.graphea.graphea1.Interfaces.InterfaceRemove;
 import com.graphea.graphea1.Observer.Observer;
 import com.graphea.graphea1.Singletons.DataStructure.SingletonGraph;
 import com.graphea.graphea1.Components.PopUp.PopUpLine;
@@ -16,32 +19,33 @@ import javafx.scene.shape.Line;
 
 import java.io.Serializable;
 
-public class Edge extends Line implements Serializable, Observer {
+public class Edge extends Line implements Serializable, Observer, InterfaceRemove {
 
     private Vertex start;
     private Vertex end;
-
+    private String value;
 
     private transient PopUp popUpMenu = new PopUpLine(this);
     private SingletonWindowCircle WindowCircle = SingletonWindowCircle.getInstance();
     private transient OnMouseEnteredContext mouseEntered = new OnMouseEnteredContext();
     private transient OnMouseExitedContext mouseExited = new OnMouseExitedContext();
     private transient OnMouseClickedContext mouseClicked = new OnMouseClickedContext();
+    private TextName name;
 
 
     public Edge(Vertex origin, Vertex destination) {
         this.start = origin;
         this.end = destination;
+        this.name = new TextName(
+            (start.getxAxis() + end.getxAxis()) / 2,
+            (start.getyAxis() + end.getyAxis()) / 2
+        );
 
         init();
 
         mouseEntered.mouseEntered(new EdgeEnteredStrategy(this));
         mouseExited.mouseExited(new EdgeExitedStrategy(this));
         mouseClicked.mouseClicked(new EdgeClickedStrategy(this));
-    }
-
-    public void delete() {
-        SingletonGraph.getInstance().deleteEdge(this);
     }
 
     private void init () {
@@ -65,24 +69,12 @@ public class Edge extends Line implements Serializable, Observer {
         this.start = start;
     }
 
-    public void setStart(double x, double y) {
-        this.start = new Vertex(x, y);
-        this.setEndX(x);
-        this.setEndY(y);
-    }
-
     public Vertex getEnd() {
         return end;
     }
 
     public void setEnd(Vertex end) {
         this.end = end;
-    }
-
-    public void setEnd(double x, double y) {
-        this.end = new Vertex(x, y);
-        this.setEndX(x);
-        this.setEndY(y);
     }
 
     public PopUp getPopUpMenu() {
@@ -93,13 +85,35 @@ public class Edge extends Line implements Serializable, Observer {
         this.popUpMenu = popUpMenu;
     }
 
-    @Override
-    public String toString() {
-        return "\n\t\t Edge{ start = " + start + ", end=" + end + " }";
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+        this.name.setName(value);
+        this.name.coords();
+    }
+
+    public TextName getName() {
+        return name;
+    }
+
+    public void setName(TextName name) {
+        this.name = name;
+    }
+
+    public String getNames () {
+        return " {" + start.getValue()+ " -> " + end.getValue() + "}";
     }
 
     @Override
-    public void update(Vertex circle) {
+    public String toString() {
+        return start + "-" + end;
+    }
+
+    @Override
+    public void move(Vertex circle) {
         if (circle.isEqual(end)) {
             setEndX(WindowCircle.getX());
             setEndY(WindowCircle.getY());
@@ -108,5 +122,15 @@ public class Edge extends Line implements Serializable, Observer {
             setStartX(WindowCircle.getX());
             setStartY(WindowCircle.getY());
         }
+        name.setCoords(
+            (start.getxAxis() + end.getxAxis()) / 2,
+            (start.getyAxis() + end.getyAxis()) / 2
+        );
+    }
+
+    @Override
+    public void delete(Vertex circle) {
+        remove(this);
+        remove(this.getName());
     }
 }

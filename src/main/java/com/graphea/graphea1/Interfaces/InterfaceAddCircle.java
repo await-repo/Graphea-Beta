@@ -11,7 +11,14 @@ public interface InterfaceAddCircle extends InterfaceAdd {
                 xAxis - provider.getSplitScrollLeft().getWidth(),
                 yAxis - provider.getHeaderPane().getHeight()
         );
+        addCircle(circle);
+    }
+
+    default void addCircle (Vertex circle) {
         SingletonGraph.getInstance().insertVertex(circle);
         add(circle);
+        add(circle.getCoords());
+        add(circle.getName());
+        provider.getTextAreaPane().appendText(">> Node " + circle + " Added \n");
     }
 }

@@ -24,11 +24,10 @@ public class CircleDraggedStrategy implements OnDraggedInterfaceStrategy{
                 windowCircle.setX(mouseEvent.getSceneX() - provider.getSplitScrollLeft().getWidth());
                 windowCircle.setY(mouseEvent.getSceneY() - provider.getHeaderPane().getHeight());
 
-                circle.notifyObservers();
+                circle.moveObservers();
 
                 circle.setTranslate(windowCircle.getX() - window.getX(), windowCircle.getY() - window.getY());
                 circle.setAxis(windowCircle.getX(), windowCircle.getY());
-                //circle.moveEdgesAdjacents();
             }
         });
     }

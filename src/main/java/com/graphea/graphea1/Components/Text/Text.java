@@ -1,5 +1,6 @@
 package com.graphea.graphea1.Components.Text;
 
+import com.graphea.graphea1.Interfaces.InterfaceRemove;
 import com.graphea.graphea1.Observer.Observer;
 import com.graphea.graphea1.Singletons.Figure.SingletonCircle;
 import com.graphea.graphea1.Singletons.Providers.SingletonWindowCircle;
@@ -8,13 +9,11 @@ import javafx.scene.control.TextField;
 
 import java.io.Serializable;
 
-public class Text extends TextField implements Serializable, Observer {
-    private double xAxis;
-    private double yAxis;
-    private SingletonCircle singleton = SingletonCircle.getInstance();
-    private SingletonWindowCircle windowCircle = SingletonWindowCircle.getInstance();
-
-    public Text() {}
+public abstract class Text extends TextField implements Serializable, Observer, InterfaceRemove {
+    protected double xAxis;
+    protected double yAxis;
+    protected SingletonCircle singleton = SingletonCircle.getInstance();
+    protected SingletonWindowCircle windowCircle = SingletonWindowCircle.getInstance();
 
     public Text(double xAxis, double yAxis) {
         this.xAxis = xAxis;
@@ -31,14 +30,18 @@ public class Text extends TextField implements Serializable, Observer {
     public void setCoords (double x, double y) {
         this.xAxis = x;
         this.yAxis = y;
-
         this.setTranslateX(x);
         this.setTranslateY(y);
-        this.setText(this.xAxis + ", " + this.yAxis);
+        coords();
     }
 
     @Override
-    public void update(Vertex circle) {
-        this.setCoords(windowCircle.getX() + 15, windowCircle.getY());
+    public void delete(Vertex circle) {
+        remove(this);
     }
+
+    @Override
+    public abstract void move(Vertex circle);
+
+    public abstract void coords ();
 }

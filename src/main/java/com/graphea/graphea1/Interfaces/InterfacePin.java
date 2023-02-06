@@ -8,7 +8,7 @@ public interface InterfacePin extends InterfaceAddLine {
     SingletonCircle singleton = SingletonCircle.getInstance();
 
     default void pin (Vertex node) {
-        provider.getTextAreaPane().appendText("PIN: " + node.getxAxis() + ", " + node.getyAxis() + "\n");
+        provider.getTextAreaPane().appendText(">> PIN: " + node + "\n");
         node.setFill(Color.CYAN);
 
         if (singleton.getStart() == null) {
