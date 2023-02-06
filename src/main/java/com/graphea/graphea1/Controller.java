@@ -1,18 +1,15 @@
 package com.graphea.graphea1;
 
+import com.graphea.graphea1.Components.Text.TextName;
+import com.graphea.graphea1.Files.OpenFile;
+import com.graphea.graphea1.Files.SaveFile;
 import com.graphea.graphea1.Interfaces.InterfaceAddLine;
 import com.graphea.graphea1.Singletons.Css.SingletonAlertCSS;
-import com.graphea.graphea1.Singletons.DataStructure.AuxiliarGraph;
-import com.graphea.graphea1.Singletons.DataStructure.SingletonGraph;
 import com.graphea.graphea1.Singletons.Figure.SingletonCircle;
 import com.graphea.graphea1.Singletons.Figure.SingletonLine;
 import com.graphea.graphea1.Singletons.Providers.SingletonProvider;
-import com.graphea.graphea1.Files.DeserializeObject;
-import com.graphea.graphea1.Files.DerializeObject;
-import com.graphea.graphea1.Components.Text.Text;
+import com.graphea.graphea1.Components.Text.TextCoords;
 import com.graphea.graphea1.Interfaces.InterfaceAddCircle;
-import com.graphea.graphea1.dataEstructures.graphs.DirectedGraph.Edge;
-import com.graphea.graphea1.dataEstructures.graphs.DirectedGraph.Vertex;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,13 +19,10 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.io.File;
-
-public class Controller implements DerializeObject, DeserializeObject, InterfaceAddCircle, InterfaceAddLine {
+public class Controller implements InterfaceAddCircle, InterfaceAddLine {
 
     @FXML
     private Button close;
@@ -64,6 +58,7 @@ public class Controller implements DerializeObject, DeserializeObject, Interface
     private void init () {
         provider.set(splitScrollLeft, headerPane, textAreaPane, CentralPane, lblBottomPane);
     }
+
 
 
     @FXML
@@ -115,37 +110,16 @@ public class Controller implements DerializeObject, DeserializeObject, Interface
 
     @FXML
     protected void onOpenGraph(ActionEvent e) {
-        FileChooser chooser = new FileChooser();
-        File file = chooser.showOpenDialog(null);
         init();
-        if (file != null) {
-            AuxiliarGraph newGraph = (AuxiliarGraph) deserialize(file.getAbsolutePath());
-            for (Vertex node : newGraph.getNodes()) {
-                addCircle(
-                    node.getxAxis() + provider.getSplitScrollLeft().getWidth(),
-                    node.getyAxis() + provider.getHeaderPane().getHeight()
-                );
-            }
-            for (Edge edge : newGraph.getEdges()) {
-                addLine(edge.getStart(), edge.getEnd());
-            }
-            provider.getLblBottomPane().setText(file.getName() + " cargado");
-        }
+        OpenFile file = new OpenFile();
+        file.readFile();
     }
 
     @FXML
     protected void onSaveGraph(ActionEvent e) {
-        FileChooser chooser = new FileChooser();
-        File file = chooser.showSaveDialog(null);
-        init();
-        if (file != null) {
-            AuxiliarGraph aux = new AuxiliarGraph(
-                    SingletonGraph.getInstance().getNodes(),
-                    SingletonGraph.getInstance().getEdges()
-            );
-            serialize(aux, file.getAbsolutePath() + ".graph");
-            provider.getLblBottomPane().setText(file.getName() + " guardado");
-        }
+        SaveFile file = new SaveFile();
+        file.createFile();
+        file.saveFile();
     }
 
 
@@ -158,7 +132,7 @@ public class Controller implements DerializeObject, DeserializeObject, Interface
         showCoords.setText(msgButton);
         lblBottomPane.setText(msgLabel);
         CentralPane.getChildren().forEach(node -> {
-            if (node.getClass() == Text.class) {
+            if (node.getClass() == TextCoords.class || node.getClass() == TextName.class) {
                 node.setVisible(isVisible);
             }
         });

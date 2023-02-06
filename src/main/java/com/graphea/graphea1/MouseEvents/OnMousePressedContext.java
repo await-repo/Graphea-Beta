@@ -1,10 +1,10 @@
 package com.graphea.graphea1.MouseEvents;
 
-import com.graphea.graphea1.MousesEventsStrategies.onMousePressedStrategies.OnMouseInterfaceStrategy;
+import com.graphea.graphea1.MousesEventsStrategies.onMousePressedStrategies.OnPressedInterfaceStrategy;
 
 public class OnMousePressedContext {
 
-    public void mousePressed(OnMouseInterfaceStrategy strategy){
+    public void mousePressed(OnPressedInterfaceStrategy strategy){
         strategy.mousePressed();
     }
 }

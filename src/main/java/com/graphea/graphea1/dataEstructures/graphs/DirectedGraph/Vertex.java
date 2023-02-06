@@ -1,11 +1,11 @@
 package com.graphea.graphea1.dataEstructures.graphs.DirectedGraph;
 
 import com.graphea.graphea1.Components.PopUp.PopUp;
+import com.graphea.graphea1.Components.Text.Text;
+import com.graphea.graphea1.Components.Text.TextName;
 import com.graphea.graphea1.Observer.Observer;
 import com.graphea.graphea1.Observer.Subject;
-import com.graphea.graphea1.Singletons.DataStructure.SingletonGraph;
-import com.graphea.graphea1.Singletons.Providers.SingletonWindowCircle;
-import com.graphea.graphea1.Components.Text.Text;
+import com.graphea.graphea1.Components.Text.TextCoords;
 import com.graphea.graphea1.Components.PopUp.PopUpCircle;
 import com.graphea.graphea1.Interfaces.InterfacePin;
 import com.graphea.graphea1.Interfaces.InterfaceRemove;
@@ -26,41 +26,30 @@ public class Vertex extends Circle implements Serializable, InterfacePin, Interf
 
     private String value;
     private double xAxis, yAxis;
-    private Text coords;
-
-    private SingletonWindowCircle WindowCircle = SingletonWindowCircle.getInstance();
-    private transient PopUp popUpMenu = new PopUpCircle(this);
-    private transient OnMouseExitedContext mouseExited = new OnMouseExitedContext();
-    private transient OnMouseEnteredContext mouseEntered = new OnMouseEnteredContext();
-    private transient OnMouseClickedContext mouseClicked = new OnMouseClickedContext();
-    private transient OnMousePressedContext onMousePressedContext = new OnMousePressedContext();
-    private transient OnMouseDraggedContext onMouseDraggedContext = new OnMouseDraggedContext();
-
+    private TextCoords coords;
+    private TextName name;
+    private List<Observer> observerList;
+    private transient PopUp popUpMenu;
 
     public Vertex(double xAxis, double yAxis) {
         this.xAxis = xAxis;
         this.yAxis = yAxis;
-        this.coords = new Text(xAxis + 15, yAxis);
+        this.observerList = new ArrayList<>();
+        this.popUpMenu = new PopUpCircle(this);
+        this.coords = new TextCoords(xAxis + 15, yAxis);
+        this.name = new TextName(xAxis - 30, yAxis - 45);
 
         init();
 
         registerObserver(popUpMenu);
         registerObserver(coords);
+        registerObserver(name);
 
-        mouseEntered.mouseEntered(new CircleEnteredStrategy(this));
-        mouseExited.mouseExited(new CircleExitedStrategy(this));
-        mouseClicked.mouseClicked(new CircleClickedStrategy(this));
-        onMousePressedContext.mousePressed(new CirclePressedStrategy(this));
-        onMouseDraggedContext.mouseDragged(new CircleDraggedStrategy(this));
-    }
-
-    public void removeEdge (Edge edge) {
-        unregisterObserver(edge);
-        remove(edge);
-    }
-
-    public void delete () {
-        SingletonGraph.getInstance().deleteVertex(this);
+        new OnMouseEnteredContext().mouseEntered(new CircleEnteredStrategy(this));
+        new OnMouseExitedContext().mouseExited(new CircleExitedStrategy(this));
+        new OnMouseClickedContext().mouseClicked(new CircleClickedStrategy(this));
+        new OnMousePressedContext().mousePressed(new CirclePressedStrategy(this));
+        new OnMouseDraggedContext().mouseDragged(new CircleDraggedStrategy(this));
     }
 
     private void init () {
@@ -89,52 +78,47 @@ public class Vertex extends Circle implements Serializable, InterfacePin, Interf
     public String getValue() {
         return value;
     }
-
     public void setValue(String value) {
         this.value = value;
+        this.name.setName(value);
+        this.name.coords();
     }
-
     public double getxAxis() {
         return xAxis;
     }
-
     public void setxAxis(double xAxis) {
         this.xAxis = xAxis;
     }
-
     public double getyAxis() {
         return yAxis;
     }
-
     public void setyAxis(double yAxis) {
         this.yAxis = yAxis;
     }
-
     public Text getCoords() {
         return coords;
     }
-
-    public void setCoords(Text coords) {
+    public void setCoords(TextCoords coords) {
         this.coords = coords;
     }
-
+    public TextName getName() {
+        return name;
+    }
+    public void setName(TextName name) {
+        this.name = name;
+    }
     public PopUp getPopUpMenu() {
         return popUpMenu;
     }
-
     public void setPopUpMenu(PopUpCircle popUpMenu) {
         this.popUpMenu = popUpMenu;
     }
 
+
     @Override
     public String toString() {
-        return "Node{ value = '" + value + "', xAxis=" + xAxis +", yAxis=" + yAxis + "}";
+        return "{" + xAxis + ", " + yAxis + "}";
     }
-
-
-
-
-    List<Observer> observerList = new ArrayList<Observer>();
 
     @Override
     public void registerObserver(Observer o) {
@@ -147,9 +131,16 @@ public class Vertex extends Circle implements Serializable, InterfacePin, Interf
     }
 
     @Override
-    public void notifyObservers() {
+    public void moveObservers() {
         for (Observer o: observerList) {
-            o.update(this);
+            o.move(this);
+        }
+    }
+
+    @Override
+    public void deleteObservers() {
+        for (Observer o: observerList) {
+            o.delete(this);
         }
     }
 

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-public class Graph extends Circle implements Serializable, InterfaceRemove, InterfaceAdd {
+public class Graph extends Circle implements Serializable, InterfaceAdd, InterfaceRemove {
 
     private List<Vertex> nodes = new ArrayList<>();
     private List<Edge> edges = new ArrayList<>();
@@ -23,8 +23,6 @@ public class Graph extends Circle implements Serializable, InterfaceRemove, Inte
 
     public void insertVertex(Vertex node){
         nodes.add(node);
-        add(node.getCoords());
-        provider.getTextAreaPane().appendText(">> Node " + node.getxAxis() + ", " + node.getyAxis() + " Added \n");
     }
 
     public void insertEdge (Vertex origin, Vertex destination) {
@@ -33,27 +31,12 @@ public class Graph extends Circle implements Serializable, InterfaceRemove, Inte
 
     public void insertEdge (Edge edge) {
         edges.add(edge);
-        provider.getTextAreaPane().appendText(">> Edge " + edge.getStart().getxAxis() + ", " + edge.getStart().getyAxis() + ", " + edge.getEnd().getxAxis() + ", " + edge.getEnd().getyAxis() + " Added \n\n");
     }
 
     public void deleteVertex (Vertex node) {
         nodes.removeIf(aux -> aux == node);
         edges.removeIf(edge -> edge.getStart()== node || edge.getEnd() == node);
-
-        for (Observer o: node.observerList) {
-            if (o.getClass() != Edge.class) {
-                continue;
-            }
-            Edge edge = (Edge) o;
-            if (node.isEqual(edge.getEnd()))
-                edge.getStart().removeEdge(edge);
-            else
-                edge.getEnd().removeEdge(edge);
-        }
-
         remove(node);
-        remove(node.getCoords());
-        Message msg = new Message(5, "Vertice Eliminado");
     }
 
     public void deleteEdge (Vertex origin, Vertex destination) {
@@ -62,8 +45,6 @@ public class Graph extends Circle implements Serializable, InterfaceRemove, Inte
 
     public void deleteEdge (Edge temp) {
         edges.removeIf(edge -> edge == temp);
-        remove(temp);
-        Message msg = new Message(5, "Arista Eliminada");
     }
 
 

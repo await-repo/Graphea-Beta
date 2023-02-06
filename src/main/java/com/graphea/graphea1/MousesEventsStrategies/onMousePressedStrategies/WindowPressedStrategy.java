@@ -4,7 +4,7 @@ import com.graphea.graphea1.Singletons.Providers.SingletonWindow;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseButton;
 
-public class WindowPressedStrategy implements OnMouseInterfaceStrategy {
+public class WindowPressedStrategy implements OnPressedInterfaceStrategy {
 
     private Parent root;
     private SingletonWindow onMouse = SingletonWindow.getInstance();

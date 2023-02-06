@@ -10,14 +10,17 @@ public interface InterfaceAddLine extends InterfaceAdd {
     SingletonProvider provider = SingletonProvider.getInstance();
     default void addLine (Vertex start, Vertex end) {
         Edge line = new Edge(start, end);
-
-        start.registerObserver(line);
-        end.registerObserver(line);
-
+        addLine(line);
         start.setFill(Color.WHITE);
         end.setFill(Color.WHITE);
+    }
 
+    default void addLine (Edge line) {
+        line.getStart().registerObserver(line);
+        line.getEnd().registerObserver(line);
         SingletonGraph.getInstance().insertEdge(line);
         add(line);
+        add(line.getName());
+        provider.getTextAreaPane().appendText(">> Edge " + line + " Added \n");
     }
 }
