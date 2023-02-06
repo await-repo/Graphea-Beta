@@ -15,8 +15,8 @@ import java.io.Serializable;
 public class Loader extends Stage implements Serializable {
     private SingletonCSS singletonStyle;
     private String path;
-    OnMousePressedContext onMousePressedContext = new OnMousePressedContext();
-    OnMouseDraggedContext onMouseDraggedContext = new OnMouseDraggedContext();
+    private OnMousePressedContext onMousePressedContext = new OnMousePressedContext();
+    private OnMouseDraggedContext onMouseDraggedContext = new OnMouseDraggedContext();
 
     public Loader(String path, SingletonCSS singletonStyle) {
         this.path = path;

@@ -1,5 +1,6 @@
 package com.graphea.graphea1.Components.PopUp;
 
+import com.graphea.graphea1.Interfaces.InterfaceRemove;
 import com.graphea.graphea1.Singletons.Providers.SingletonProvider;
 import com.graphea.graphea1.Singletons.Providers.SingletonWindowCircle;
 import com.graphea.graphea1.dataEstructures.graphs.DirectedGraph.Vertex;
@@ -7,7 +8,7 @@ import javafx.scene.control.ContextMenu;
 
 import com.graphea.graphea1.Observer.Observer;
 
-public class PopUp extends ContextMenu implements Observer {
+public class PopUp extends ContextMenu implements Observer, InterfaceRemove {
 
     private SingletonProvider provider = SingletonProvider.getInstance();
     private SingletonWindowCircle windowCircle = SingletonWindowCircle.getInstance();
@@ -18,10 +19,15 @@ public class PopUp extends ContextMenu implements Observer {
     }
 
     @Override
-    public void update(Vertex circle) {
+    public void move(Vertex circle) {
         this.setCoords(
             windowCircle.getX() + provider.getSplitScrollLeft().getWidth() - 15,
             windowCircle.getY() + provider.getHeaderPane().getHeight()
         );
+    }
+
+    @Override
+    public void delete(Vertex circle) {
+        remove(this);
     }
 }

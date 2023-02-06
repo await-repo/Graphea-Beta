@@ -1,5 +1,5 @@
 package com.graphea.graphea1.MousesEventsStrategies.onMousePressedStrategies;
 
-public interface OnMouseInterfaceStrategy {
+public interface OnPressedInterfaceStrategy {
     public void mousePressed();
 }
