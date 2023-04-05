@@ -6,6 +6,6 @@ Graphea será una herramienta de análisis de gráficos, le permite crear, almac
 
 ### **Imagenes de Graphea**
 
-![Screenshot (221)](https://user-images.githubusercontent.com/115047831/215877492-fb66fbca-f0b6-4e4d-a1a8-7a263b3a895a.png)
+![Screenshot (5467)](https://user-images.githubusercontent.com/115047831/230215919-4f6e965f-8910-4bbd-8d95-d5b30826b4df.png)
 
-![Screenshot (220)](https://user-images.githubusercontent.com/115047831/215877588-b01d0903-fdfd-459f-bace-506204c72921.png)
+![Screenshot (5466)](https://user-images.githubusercontent.com/115047831/230216114-6d71270e-7a87-443f-94d8-38b78c73e733.png)
