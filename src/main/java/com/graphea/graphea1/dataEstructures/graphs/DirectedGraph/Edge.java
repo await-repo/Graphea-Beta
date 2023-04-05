@@ -3,6 +3,7 @@ package com.graphea.graphea1.dataEstructures.graphs.DirectedGraph;
 import com.graphea.graphea1.Components.PopUp.PopUp;
 import com.graphea.graphea1.Components.Text.Text;
 import com.graphea.graphea1.Components.Text.TextName;
+import com.graphea.graphea1.Factory.FactoryEdgeStrategies;
 import com.graphea.graphea1.Interfaces.InterfaceRemove;
 import com.graphea.graphea1.Observer.Observer;
 import com.graphea.graphea1.Singletons.DataStructure.SingletonGraph;
@@ -25,27 +26,26 @@ public class Edge extends Line implements Serializable, Observer, InterfaceRemov
     private Vertex end;
     private String value;
 
-    private transient PopUp popUpMenu = new PopUpLine(this);
+
+
     private SingletonWindowCircle WindowCircle = SingletonWindowCircle.getInstance();
-    private transient OnMouseEnteredContext mouseEntered = new OnMouseEnteredContext();
-    private transient OnMouseExitedContext mouseExited = new OnMouseExitedContext();
-    private transient OnMouseClickedContext mouseClicked = new OnMouseClickedContext();
+
+    private PopUp popUpMenu;
     private TextName name;
+
+
 
 
     public Edge(Vertex origin, Vertex destination) {
         this.start = origin;
         this.end = destination;
+        this.popUpMenu = new PopUpLine(this);
         this.name = new TextName(
             (start.getxAxis() + end.getxAxis()) / 2,
             (start.getyAxis() + end.getyAxis()) / 2
         );
-
         init();
-
-        mouseEntered.mouseEntered(new EdgeEnteredStrategy(this));
-        mouseExited.mouseExited(new EdgeExitedStrategy(this));
-        mouseClicked.mouseClicked(new EdgeClickedStrategy(this));
+        new FactoryEdgeStrategies(this);
     }
 
     private void init () {
@@ -114,11 +114,11 @@ public class Edge extends Line implements Serializable, Observer, InterfaceRemov
 
     @Override
     public void move(Vertex circle) {
-        if (circle.isEqual(end)) {
+        if (circle.equals(end)) {
             setEndX(WindowCircle.getX());
             setEndY(WindowCircle.getY());
         }
-        if (circle.isEqual(start)) {
+        if (circle.equals(start)) {
             setStartX(WindowCircle.getX());
             setStartY(WindowCircle.getY());
         }

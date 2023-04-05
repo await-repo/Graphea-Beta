@@ -1,6 +1,7 @@
 package com.graphea.graphea1.Components.PopUp;
 
 import com.graphea.graphea1.Interfaces.InterfaceRemove;
+import com.graphea.graphea1.Singletons.Providers.Global;
 import com.graphea.graphea1.Singletons.Providers.SingletonProvider;
 import com.graphea.graphea1.Singletons.Providers.SingletonWindowCircle;
 import com.graphea.graphea1.dataEstructures.graphs.DirectedGraph.Vertex;
@@ -10,7 +11,9 @@ import com.graphea.graphea1.Observer.Observer;
 
 public class PopUp extends ContextMenu implements Observer, InterfaceRemove {
 
-    private SingletonProvider provider = SingletonProvider.getInstance();
+    //private SingletonProvider provider = SingletonProvider.getInstance();
+    Global provider = Global.getInstance();
+
     private SingletonWindowCircle windowCircle = SingletonWindowCircle.getInstance();
 
     public void setCoords (double x, double y) {

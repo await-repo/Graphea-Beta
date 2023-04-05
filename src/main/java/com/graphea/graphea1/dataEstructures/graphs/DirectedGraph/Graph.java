@@ -19,7 +19,6 @@ public class Graph extends Circle implements Serializable, InterfaceAdd, Interfa
     private Hashtable<Vertex, List<Vertex>> adjacencyList = new Hashtable<>();
     private Hashtable<Vertex,Hashtable<Vertex,Integer>> adjacencyMatrix = new Hashtable<>();
 
-    private transient SingletonProvider provider = SingletonProvider.getInstance();
 
     public void insertVertex(Vertex node){
         nodes.add(node);

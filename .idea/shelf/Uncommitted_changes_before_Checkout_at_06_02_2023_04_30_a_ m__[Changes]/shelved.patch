@@ -1,0 +1,137 @@
+Index: src/main/java/com/graphea/graphea1/Components/PopUp/PopUpStrategies/DeleteContextStrategy/DeleteContext.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.graphea.graphea1.Components.PopUp.PopUpStrategies.DeleteContextStrategy;\r\n\r\nimport com.graphea.graphea1.Components.PopUp.PopUpStrategies.DeleteStrategies.OnDeleteInterfaceStrategy;\r\nimport javafx.scene.control.MenuItem;\r\n\r\npublic class DeleteContext {\r\n\r\n    public MenuItem delete(OnDeleteInterfaceStrategy strategy){\r\n        return strategy.delete();\r\n    }\r\n\r\n}\r\n
+===================================================================
+diff --git a/src/main/java/com/graphea/graphea1/Components/PopUp/PopUpStrategies/DeleteContextStrategy/DeleteContext.java b/src/main/java/com/graphea/graphea1/Components/PopUp/PopUpStrategies/DeleteContextStrategy/DeleteContext.java
+--- a/src/main/java/com/graphea/graphea1/Components/PopUp/PopUpStrategies/DeleteContextStrategy/DeleteContext.java	
++++ b/src/main/java/com/graphea/graphea1/Components/PopUp/PopUpStrategies/DeleteContextStrategy/DeleteContext.java	
+@@ -1,12 +1,0 @@
+-package com.graphea.graphea1.Components.PopUp.PopUpStrategies.DeleteContextStrategy;
+-
+-import com.graphea.graphea1.Components.PopUp.PopUpStrategies.DeleteStrategies.OnDeleteInterfaceStrategy;
+-import javafx.scene.control.MenuItem;
+-
+-public class DeleteContext {
+-
+-    public MenuItem delete(OnDeleteInterfaceStrategy strategy){
+-        return strategy.delete();
+-    }
+-
+-}
+Index: src/main/java/com/graphea/graphea1/Components/PopUp/PopUpStrategies/DeleteContextStrategy/PinContext.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.graphea.graphea1.Components.PopUp.PopUpStrategies.DeleteContextStrategy;\r\n\r\nimport com.graphea.graphea1.Components.PopUp.PopUpStrategies.PinStrategies.OnPinInterfaceStrategy;\r\nimport javafx.scene.control.MenuItem;\r\n\r\npublic class PinContext {\r\n\r\n    public MenuItem pin(OnPinInterfaceStrategy strategy){\r\n        return strategy.pin();\r\n    }\r\n\r\n}\r\n
+===================================================================
+diff --git a/src/main/java/com/graphea/graphea1/Components/PopUp/PopUpStrategies/DeleteContextStrategy/PinContext.java b/src/main/java/com/graphea/graphea1/Components/PopUp/PopUpStrategies/DeleteContextStrategy/PinContext.java
+--- a/src/main/java/com/graphea/graphea1/Components/PopUp/PopUpStrategies/DeleteContextStrategy/PinContext.java	
++++ b/src/main/java/com/graphea/graphea1/Components/PopUp/PopUpStrategies/DeleteContextStrategy/PinContext.java	
+@@ -1,12 +1,0 @@
+-package com.graphea.graphea1.Components.PopUp.PopUpStrategies.DeleteContextStrategy;
+-
+-import com.graphea.graphea1.Components.PopUp.PopUpStrategies.PinStrategies.OnPinInterfaceStrategy;
+-import javafx.scene.control.MenuItem;
+-
+-public class PinContext {
+-
+-    public MenuItem pin(OnPinInterfaceStrategy strategy){
+-        return strategy.pin();
+-    }
+-
+-}
+Index: src/main/java/com/graphea/graphea1/MousesEventsStrategies/onMousePressedStrategies/OnMouseInterfaceStrategy.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.graphea.graphea1.MousesEventsStrategies.onMousePressedStrategies;\r\n\r\npublic interface OnMouseInterfaceStrategy {\r\n    public void mousePressed();\r\n}
+===================================================================
+diff --git a/src/main/java/com/graphea/graphea1/MousesEventsStrategies/onMousePressedStrategies/OnMouseInterfaceStrategy.java b/src/main/java/com/graphea/graphea1/MousesEventsStrategies/onMousePressedStrategies/OnMouseInterfaceStrategy.java
+--- a/src/main/java/com/graphea/graphea1/MousesEventsStrategies/onMousePressedStrategies/OnMouseInterfaceStrategy.java	
++++ b/src/main/java/com/graphea/graphea1/MousesEventsStrategies/onMousePressedStrategies/OnMouseInterfaceStrategy.java	
+@@ -1,5 +1,0 @@
+-package com.graphea.graphea1.MousesEventsStrategies.onMousePressedStrategies;
+-
+-public interface OnMouseInterfaceStrategy {
+-    public void mousePressed();
+-}
+\ No newline at end of file
+Index: src/main/java/com/graphea/graphea1/Files/DerializeObject.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.graphea.graphea1.Files;\r\n\r\nimport java.io.FileOutputStream;\r\nimport java.io.IOException;\r\nimport java.io.ObjectOutputStream;\r\n\r\npublic interface DerializeObject {\r\n\r\n    default void serialize(Object graph, String fileName)  {\r\n        try {\r\n            FileOutputStream fout = new FileOutputStream(fileName);\r\n            ObjectOutputStream out = new ObjectOutputStream(fout);\r\n            out.writeObject(graph);\r\n            out.flush();\r\n            out.close();\r\n        } catch (IOException e) {\r\n            throw new RuntimeException(e);\r\n        }\r\n    }\r\n\r\n}\r\n
+===================================================================
+diff --git a/src/main/java/com/graphea/graphea1/Files/DerializeObject.java b/src/main/java/com/graphea/graphea1/Files/DerializeObject.java
+--- a/src/main/java/com/graphea/graphea1/Files/DerializeObject.java	
++++ b/src/main/java/com/graphea/graphea1/Files/DerializeObject.java	
+@@ -1,21 +1,0 @@
+-package com.graphea.graphea1.Files;
+-
+-import java.io.FileOutputStream;
+-import java.io.IOException;
+-import java.io.ObjectOutputStream;
+-
+-public interface DerializeObject {
+-
+-    default void serialize(Object graph, String fileName)  {
+-        try {
+-            FileOutputStream fout = new FileOutputStream(fileName);
+-            ObjectOutputStream out = new ObjectOutputStream(fout);
+-            out.writeObject(graph);
+-            out.flush();
+-            out.close();
+-        } catch (IOException e) {
+-            throw new RuntimeException(e);
+-        }
+-    }
+-
+-}
+Index: src/main/java/com/graphea/graphea1/Files/DeserializeObject.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.graphea.graphea1.Files;\r\n\r\nimport java.io.FileInputStream;\r\nimport java.io.IOException;\r\nimport java.io.ObjectInputStream;\r\n\r\npublic interface DeserializeObject {\r\n\r\n    default Object deserialize(String fileName) {\r\n        try {\r\n            FileInputStream fis = new FileInputStream(fileName);\r\n            ObjectInputStream ois = new ObjectInputStream(fis);\r\n            Object obj = ois.readObject();\r\n            ois.close();\r\n            return obj;\r\n        } catch (IOException | ClassNotFoundException e) {\r\n            throw new RuntimeException(e);\r\n        }\r\n    }\r\n\r\n}\r\n
+===================================================================
+diff --git a/src/main/java/com/graphea/graphea1/Files/DeserializeObject.java b/src/main/java/com/graphea/graphea1/Files/DeserializeObject.java
+--- a/src/main/java/com/graphea/graphea1/Files/DeserializeObject.java	
++++ b/src/main/java/com/graphea/graphea1/Files/DeserializeObject.java	
+@@ -1,21 +1,0 @@
+-package com.graphea.graphea1.Files;
+-
+-import java.io.FileInputStream;
+-import java.io.IOException;
+-import java.io.ObjectInputStream;
+-
+-public interface DeserializeObject {
+-
+-    default Object deserialize(String fileName) {
+-        try {
+-            FileInputStream fis = new FileInputStream(fileName);
+-            ObjectInputStream ois = new ObjectInputStream(fis);
+-            Object obj = ois.readObject();
+-            ois.close();
+-            return obj;
+-        } catch (IOException | ClassNotFoundException e) {
+-            throw new RuntimeException(e);
+-        }
+-    }
+-
+-}
+Index: src/main/java/com/graphea/graphea1/Observer/MoveContext.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.graphea.graphea1.Observer;\r\n\r\nimport com.graphea.graphea1.MousesEventsStrategies.onMouseClickedStrategies.OnClickedInterfaceStrategy;\r\n\r\npublic class MoveContext {\r\n\r\n    public void mouseClicked(OnClickedInterfaceStrategy strategy) {\r\n        strategy.mouseClicked();\r\n    }\r\n\r\n}\r\n
+===================================================================
+diff --git a/src/main/java/com/graphea/graphea1/Observer/MoveContext.java b/src/main/java/com/graphea/graphea1/Observer/MoveContext.java
+--- a/src/main/java/com/graphea/graphea1/Observer/MoveContext.java	
++++ b/src/main/java/com/graphea/graphea1/Observer/MoveContext.java	
+@@ -1,11 +1,0 @@
+-package com.graphea.graphea1.Observer;
+-
+-import com.graphea.graphea1.MousesEventsStrategies.onMouseClickedStrategies.OnClickedInterfaceStrategy;
+-
+-public class MoveContext {
+-
+-    public void mouseClicked(OnClickedInterfaceStrategy strategy) {
+-        strategy.mouseClicked();
+-    }
+-
+-}

@@ -4,8 +4,8 @@ import com.graphea.graphea1.Components.PopUp.PopUpStrategies.RenameStrategies.On
 import javafx.scene.control.MenuItem;
 
 public class RenameContext {
-    public MenuItem rename(OnRenameInterfaceStrategy strategy){
-        return strategy.rename();
+    public void rename(OnRenameInterfaceStrategy strategy){
+        strategy.rename();
     }
 
 }

@@ -5,8 +5,8 @@ import javafx.scene.control.MenuItem;
 
 public class DeleteContext {
 
-    public MenuItem delete(OnDeleteInterfaceStrategy strategy){
-        return strategy.delete();
+    public void delete(OnDeleteInterfaceStrategy strategy){
+        strategy.delete();
     }
 
 }

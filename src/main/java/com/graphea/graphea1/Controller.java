@@ -51,13 +51,9 @@ public class Controller implements InterfaceAddCircle, InterfaceAddLine {
 
     private SingletonCircle singleton = SingletonCircle.getInstance();
     private SingletonLine singletonL = SingletonLine.getInstance();
-    private SingletonProvider provider = SingletonProvider.getInstance();
 
     //private Stage stage;
 
-    private void init () {
-        provider.set(splitScrollLeft, headerPane, textAreaPane, CentralPane, lblBottomPane);
-    }
 
 
 
@@ -110,7 +106,6 @@ public class Controller implements InterfaceAddCircle, InterfaceAddLine {
 
     @FXML
     protected void onOpenGraph(ActionEvent e) {
-        init();
         OpenFile file = new OpenFile();
         file.readFile();
     }
@@ -124,7 +119,6 @@ public class Controller implements InterfaceAddCircle, InterfaceAddLine {
 
 
     private void addCircleInto(double xAxis, double yAxis) {
-        init();
         addCircle(xAxis, yAxis);
     }
 
