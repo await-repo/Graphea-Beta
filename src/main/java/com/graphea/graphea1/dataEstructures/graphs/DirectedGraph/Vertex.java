@@ -3,6 +3,7 @@ package com.graphea.graphea1.dataEstructures.graphs.DirectedGraph;
 import com.graphea.graphea1.Components.PopUp.PopUp;
 import com.graphea.graphea1.Components.Text.Text;
 import com.graphea.graphea1.Components.Text.TextName;
+import com.graphea.graphea1.Factory.FactoryVertexStrategies;
 import com.graphea.graphea1.Observer.Observer;
 import com.graphea.graphea1.Observer.Subject;
 import com.graphea.graphea1.Components.Text.TextCoords;
@@ -17,19 +18,28 @@ import com.graphea.graphea1.MousesEventsStrategies.onMouseExitedStrategies.Circl
 import com.graphea.graphea1.MousesEventsStrategies.onMousePressedStrategies.CirclePressedStrategy;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Shape;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Vertex extends Circle implements Serializable, InterfacePin, InterfaceRemove, Subject {
 
     private String value;
     private double xAxis, yAxis;
+
+
+
     private TextCoords coords;
-    private TextName name;
     private List<Observer> observerList;
-    private transient PopUp popUpMenu;
+
+
+    private PopUp popUpMenu;
+    private TextName name;
+
+
 
     public Vertex(double xAxis, double yAxis) {
         this.xAxis = xAxis;
@@ -38,18 +48,11 @@ public class Vertex extends Circle implements Serializable, InterfacePin, Interf
         this.popUpMenu = new PopUpCircle(this);
         this.coords = new TextCoords(xAxis + 15, yAxis);
         this.name = new TextName(xAxis - 30, yAxis - 45);
-
         init();
-
         registerObserver(popUpMenu);
         registerObserver(coords);
         registerObserver(name);
-
-        new OnMouseEnteredContext().mouseEntered(new CircleEnteredStrategy(this));
-        new OnMouseExitedContext().mouseExited(new CircleExitedStrategy(this));
-        new OnMouseClickedContext().mouseClicked(new CircleClickedStrategy(this));
-        new OnMousePressedContext().mousePressed(new CirclePressedStrategy(this));
-        new OnMouseDraggedContext().mouseDragged(new CircleDraggedStrategy(this));
+        new FactoryVertexStrategies(this);
     }
 
     private void init () {
@@ -67,22 +70,20 @@ public class Vertex extends Circle implements Serializable, InterfacePin, Interf
     }
 
     public void setAxis (double x, double y) {
-        this.setxAxis(x);
-        this.setyAxis(y);
-    }
-
-    public boolean isEqual (Vertex vertex) {
-        return this.getxAxis() == vertex.getxAxis() && this.getyAxis() == vertex.getyAxis();
+        xAxis = x;
+        yAxis = y;
     }
 
     public String getValue() {
         return value;
     }
+
     public void setValue(String value) {
         this.value = value;
         this.name.setName(value);
         this.name.coords();
     }
+
     public double getxAxis() {
         return xAxis;
     }
@@ -132,16 +133,27 @@ public class Vertex extends Circle implements Serializable, InterfacePin, Interf
 
     @Override
     public void moveObservers() {
-        for (Observer o: observerList) {
-            o.move(this);
-        }
+        observerList.forEach(o -> o.move(this));
     }
 
     @Override
     public void deleteObservers() {
-        for (Observer o: observerList) {
-            o.delete(this);
-        }
+        observerList.forEach(o -> o.delete(this));
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Vertex vertex = (Vertex) o;
+        return Double.compare(vertex.xAxis, xAxis) == 0 && Double.compare(vertex.yAxis, yAxis) == 0;
+    }
+
+    /*
+    @Override
+    public int hashCode() {
+        return Objects.hash(xAxis, yAxis);
+    }
+    */
 
 }

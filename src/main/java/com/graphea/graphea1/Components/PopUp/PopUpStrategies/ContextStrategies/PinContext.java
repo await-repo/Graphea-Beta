@@ -5,8 +5,8 @@ import javafx.scene.control.MenuItem;
 
 public class PinContext {
 
-    public MenuItem pin(OnPinInterfaceStrategy strategy){
-        return strategy.pin();
+    public void pin(OnPinInterfaceStrategy strategy){
+        strategy.pin();
     }
 
 }

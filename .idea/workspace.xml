@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="af2fc4a6-0f53-4864-bd93-b4f5b37f536c" name="Changes" comment="(Third commit-Fixed up) Changed the graph file format, now a graph can be stored without being serialized. The State design pattern was applied both to store and open a file with the information of the vertices and edges.">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Components/PopUp/PopUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Components/PopUp/PopUp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Components/PopUp/PopUpCircle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Components/PopUp/PopUpCircle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Components/PopUp/PopUpLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Components/PopUp/PopUpLine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Components/PopUp/PopUpStrategies/ContextStrategies/DeleteContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Components/PopUp/PopUpStrategies/ContextStrategies/DeleteContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Components/PopUp/PopUpStrategies/ContextStrategies/PinContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Components/PopUp/PopUpStrategies/ContextStrategies/PinContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Components/PopUp/PopUpStrategies/ContextStrategies/RenameContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Components/PopUp/PopUpStrategies/ContextStrategies/RenameContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Components/PopUp/PopUpStrategies/DeleteStrategies/CircleDeleteStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Components/PopUp/PopUpStrategies/DeleteStrategies/CircleDeleteStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Components/PopUp/PopUpStrategies/DeleteStrategies/EdgeDeleteStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Components/PopUp/PopUpStrategies/DeleteStrategies/EdgeDeleteStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Components/PopUp/PopUpStrategies/DeleteStrategies/OnDeleteInterfaceStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Components/PopUp/PopUpStrategies/DeleteStrategies/OnDeleteInterfaceStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Components/PopUp/PopUpStrategies/PinStrategies/CirclePinStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Components/PopUp/PopUpStrategies/PinStrategies/CirclePinStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Components/PopUp/PopUpStrategies/PinStrategies/OnPinInterfaceStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Components/PopUp/PopUpStrategies/PinStrategies/OnPinInterfaceStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Components/PopUp/PopUpStrategies/RenameStrategies/CircleRenameStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Components/PopUp/PopUpStrategies/RenameStrategies/CircleRenameStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Components/PopUp/PopUpStrategies/RenameStrategies/EdgeRenameStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Components/PopUp/PopUpStrategies/RenameStrategies/EdgeRenameStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Components/PopUp/PopUpStrategies/RenameStrategies/OnRenameInterfaceStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Components/PopUp/PopUpStrategies/RenameStrategies/OnRenameInterfaceStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Files/OpenFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Files/OpenFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Files/SaveFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Files/SaveFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Files/SaveFileState/StateSaveEdges.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Files/SaveFileState/StateSaveEdges.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Files/SaveFileState/StateSaveNodes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Files/SaveFileState/StateSaveNodes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Functional/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Functional/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Functional/SingletonFunctionsMessages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Functional/SingletonFunctionsMessages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Interfaces/InterfaceAdd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Interfaces/InterfaceAdd.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Interfaces/InterfaceAddCircle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Interfaces/InterfaceAddCircle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Interfaces/InterfaceAddLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Interfaces/InterfaceAddLine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Interfaces/InterfaceRemove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Interfaces/InterfaceRemove.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Loader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Loader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/MousesEventsStrategies/onMouseClickedStrategies/CircleClickedStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/MousesEventsStrategies/onMouseClickedStrategies/CircleClickedStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/MousesEventsStrategies/onMouseDraggedStrategies/CircleDraggedStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/MousesEventsStrategies/onMouseDraggedStrategies/CircleDraggedStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/MousesEventsStrategies/onMouseEnteredStrategies/CircleEnteredStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/MousesEventsStrategies/onMouseEnteredStrategies/CircleEnteredStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/MousesEventsStrategies/onMouseExitedStrategies/CircleExitedStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/MousesEventsStrategies/onMouseExitedStrategies/CircleExitedStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/MousesEventsStrategies/onMousePressedStrategies/CirclePressedStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/MousesEventsStrategies/onMousePressedStrategies/CirclePressedStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Observer/Subject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/Observer/Subject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/dataEstructures/graphs/DirectedGraph/Edge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/dataEstructures/graphs/DirectedGraph/Edge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/dataEstructures/graphs/DirectedGraph/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/dataEstructures/graphs/DirectedGraph/Graph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/dataEstructures/graphs/DirectedGraph/Vertex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graphea/graphea1/dataEstructures/graphs/DirectedGraph/Vertex.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/graphea/graphea1/index.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/graphea/graphea1/index.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/graphea/graphea1/styles/buttons.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/graphea/graphea1/styles/buttons.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/graphea/graphea1/styles/contextmenu.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/graphea/graphea1/styles/contextmenu.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/graphea/graphea1/styles/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/graphea/graphea1/styles/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/graphea/graphea1/styles/scrollbar.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/graphea/graphea1/styles/scrollbar.css" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="KEEP" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="4c5ea142-9313-464a-8a02-533367dfd4c3" />
+        <option name="url" value="https://github.com/await-repo/Graphea-Beta.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2Klm3GAftCPI4ahgPP8Kk0FBUfi" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/loooo/OneDrive/Desktop/Spring Boot Curso/curso&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\loooo\IdeaProjects\Graphea-1\src\main\java\com\graphea\graphea1\UI\Components\ButtonStrategies" />
+      <recent name="C:\Users\loooo\IdeaProjects\Graphea-1\src\main\java\com\graphea" />
+      <recent name="C:\Users\loooo\IdeaProjects\Graphea-1\src\main\resources\com\graphea\graphea1\styles" />
+      <recent name="C:\Users\loooo\IdeaProjects\Graphea-1" />
+      <recent name="C:\Users\loooo\IdeaProjects\Graphea-1\src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\loooo\IdeaProjects\Graphea-1\src\main\resources\com\graphea\graphea1\views" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.graphea.graphea1" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.graphea.graphea1.Factory" />
+      <recent name="com.graphea.graphea1.Observer" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.graphea.graphea1.Main" />
+      <module name="Graphea-1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.graphea.graphea1.Main" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SerializationTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.graphea.graphea1.XD.SerializationTest" />
+      <module name="Graphea-1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.graphea.graphea1.Files.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="com.graphea.graphea1.Observer.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.graphea.graphea1.Observer.Main" />
+      <module name="Graphea-1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.graphea.graphea1.Observer.Main" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="com.graphea.graphea1.UI.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.graphea.graphea1.UI.Main" />
+      <module name="Graphea-1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.graphea.graphea1.UI.Main" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.com.graphea.graphea1.UI.Main" />
+        <item itemvalue="Application.SerializationTest" />
+        <item itemvalue="Application.com.graphea.graphea1.Observer.Main" />
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="af2fc4a6-0f53-4864-bd93-b4f5b37f536c" name="Changes" comment="" />
+      <created>1674557345527</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1674557345527</updated>
+      <workItem from="1674557347166" duration="10983000" />
+      <workItem from="1674597361749" duration="152000" />
+      <workItem from="1674867436074" duration="29771000" />
+      <workItem from="1674959853740" duration="28328000" />
+      <workItem from="1675022899525" duration="43542000" />
+      <workItem from="1675073017428" duration="3933000" />
+      <workItem from="1675112884390" duration="17140000" />
+      <workItem from="1675137593047" duration="24777000" />
+      <workItem from="1675194400991" duration="3371000" />
+      <workItem from="1675292364145" duration="1260000" />
+      <workItem from="1675313446654" duration="19915000" />
+      <workItem from="1675374361685" duration="11738000" />
+      <workItem from="1675392600061" duration="737000" />
+      <workItem from="1675411860018" duration="12994000" />
+      <workItem from="1675468996600" duration="13721000" />
+      <workItem from="1675482875879" duration="291000" />
+      <workItem from="1675483185700" duration="981000" />
+      <workItem from="1675490503517" duration="17991000" />
+      <workItem from="1675560124070" duration="31763000" />
+      <workItem from="1675644136238" duration="8429000" />
+      <workItem from="1675654652284" duration="14081000" />
+      <workItem from="1675672823520" duration="1258000" />
+      <workItem from="1675674099702" duration="1081000" />
+      <workItem from="1675675213154" duration="4852000" />
+      <workItem from="1675727259104" duration="3210000" />
+      <workItem from="1675742067915" duration="11799000" />
+      <workItem from="1675907323318" duration="49000" />
+      <workItem from="1677095223717" duration="994000" />
+      <workItem from="1677807067581" duration="8724000" />
+      <workItem from="1677820143664" duration="6525000" />
+      <workItem from="1678936295831" duration="12669000" />
+      <workItem from="1678989801100" duration="6186000" />
+      <workItem from="1679003315556" duration="4745000" />
+      <workItem from="1679011136605" duration="22305000" />
+      <workItem from="1679087839275" duration="1338000" />
+      <workItem from="1679092309289" duration="713000" />
+      <workItem from="1679191293356" duration="11270000" />
+      <workItem from="1679249986324" duration="10045000" />
+      <workItem from="1679376003200" duration="3657000" />
+      <workItem from="1679416180957" duration="45000" />
+      <workItem from="1679600114048" duration="5252000" />
+      <workItem from="1679671659218" duration="114000" />
+      <workItem from="1679676854902" duration="8319000" />
+      <workItem from="1679754132907" duration="12328000" />
+      <workItem from="1679862707188" duration="23000" />
+      <workItem from="1680628382264" duration="25000" />
+      <workItem from="1680651891650" duration="192000" />
+      <workItem from="1680728117570" duration="366000" />
+    </task>
+    <task id="LOCAL-00001" summary="(First commit) Graphea will be a Graph analyzer tool, it allows you to create, store, edit and delete graphs created for study purposes. Graphs serve as analysis tools and are data structures.">
+      <created>1675195772957</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1675195772957</updated>
+    </task>
+    <task id="LOCAL-00002" summary="(Second commit) Modify the on mouse events, now the Strategy pattern is used.&#10;Modify the events of the PopUp menu, now each action of the menu item is controlled with the strategy pattern.&#10;Add the pattern observer to the components of a Vertex: PopUp menu, Text Coord and adjacent edges.">
+      <created>1675481427996</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1675481427996</updated>
+    </task>
+    <task id="LOCAL-00003" summary="(Third commit-Fixed up) Changed the graph file format, now a graph can be stored without being serialized. The State design pattern was applied both to store and open a file with the information of the vertices and edges.">
+      <created>1675677240790</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1675677240790</updated>
+    </task>
+    <task id="LOCAL-00004" summary="(Third commit-Fixed up) Changed the graph file format, now a graph can be stored without being serialized. The State design pattern was applied both to store and open a file with the information of the vertices and edges.">
+      <created>1675679768447</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1675679768447</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="save-files-graph" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="(First commit) Graphea will be a Graph analyzer tool, it allows you to create, store, edit and delete graphs created for study purposes. Graphs serve as analysis tools and are data structures." />
+    <MESSAGE value="(Second commit) Modify the on mouse events, now the Strategy pattern is used.&#10;Modify the events of the PopUp menu, now each action of the menu item is controlled with the strategy pattern.&#10;Add the pattern observer to the components of a Vertex: PopUp menu, Text Coord and adjacent edges." />
+    <MESSAGE value="(Third commit-Fixed up) Changed the graph file format, now a graph can be stored without being serialized. The State design pattern was applied both to store and open a file with the information of the vertices and edges." />
+    <option name="LAST_COMMIT_MESSAGE" value="(Third commit-Fixed up) Changed the graph file format, now a graph can be stored without being serialized. The State design pattern was applied both to store and open a file with the information of the vertices and edges." />
+  </component>
+</project>

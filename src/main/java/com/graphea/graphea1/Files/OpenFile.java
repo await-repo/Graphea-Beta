@@ -5,6 +5,7 @@ import com.graphea.graphea1.Files.OpenFileState.StateReadNodes;
 import com.graphea.graphea1.Files.OpenFileState.StateReadeEdges;
 import com.graphea.graphea1.Functional.Message;
 import com.graphea.graphea1.Singletons.DataStructure.SingletonGraph;
+import com.graphea.graphea1.UI.Panes.bottomComponents.Notification;
 import com.graphea.graphea1.dataEstructures.graphs.DirectedGraph.Vertex;
 import javafx.stage.FileChooser;
 
@@ -34,7 +35,8 @@ public class OpenFile {
                 context.read(line);
             }
             nodes = null;
-            new Message(5,"Grafo procesado satisfactoriamente");
+            //new Message(5,"Grafo procesado satisfactoriamente");
+            new Message(5,new Notification("Grafo procesado satisfactoriamente", "secondary"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

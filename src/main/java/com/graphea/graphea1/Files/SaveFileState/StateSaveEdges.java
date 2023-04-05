@@ -3,6 +3,7 @@ package com.graphea.graphea1.Files.SaveFileState;
 import com.graphea.graphea1.Functional.Message;
 import com.graphea.graphea1.Interfaces.InterfaceAddLine;
 import com.graphea.graphea1.Singletons.DataStructure.SingletonGraph;
+import com.graphea.graphea1.UI.Panes.bottomComponents.Notification;
 import com.graphea.graphea1.dataEstructures.graphs.DirectedGraph.Edge;
 import com.graphea.graphea1.dataEstructures.graphs.DirectedGraph.Vertex;
 
@@ -20,7 +21,8 @@ public class StateSaveEdges implements State, InterfaceAddLine {
                 writer.write(edge.toString() + "\n");
             }
         } catch (IOException e) {
-            new Message(5, "Un error inesperado a ocurrido al crear las Aristas");
+            //new Message(5, "Un error inesperado a ocurrido al crear las Aristas");
+            new Message(5, new Notification("Un error inesperado a ocurrido al crear las Aristas", "danger"));
             e.printStackTrace();
         }
 

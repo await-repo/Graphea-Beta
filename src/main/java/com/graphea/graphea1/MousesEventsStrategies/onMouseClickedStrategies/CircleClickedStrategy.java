@@ -1,5 +1,6 @@
 package com.graphea.graphea1.MousesEventsStrategies.onMouseClickedStrategies;
 
+import com.graphea.graphea1.Singletons.Providers.Global;
 import com.graphea.graphea1.dataEstructures.graphs.DirectedGraph.Vertex;
 import javafx.scene.input.MouseButton;
 

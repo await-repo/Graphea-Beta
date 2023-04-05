@@ -1,5 +1,6 @@
 package com.graphea.graphea1.MousesEventsStrategies.onMouseDraggedStrategies;
 
+import com.graphea.graphea1.Singletons.Providers.Global;
 import com.graphea.graphea1.Singletons.Providers.SingletonProvider;
 import com.graphea.graphea1.Singletons.Providers.SingletonWindow;
 import com.graphea.graphea1.Singletons.Providers.SingletonWindowCircle;
@@ -8,7 +9,7 @@ import javafx.scene.input.MouseButton;
 
 public class CircleDraggedStrategy implements OnDraggedInterfaceStrategy{
 
-    private SingletonProvider provider = SingletonProvider.getInstance();
+    private Global provider = Global.getInstance();
     private SingletonWindow window = SingletonWindow.getInstance();
     private SingletonWindowCircle windowCircle = SingletonWindowCircle.getInstance();
     private Vertex circle;

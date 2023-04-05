@@ -1,5 +1,6 @@
 package com.graphea.graphea1.MousesEventsStrategies.onMousePressedStrategies;
 
+import com.graphea.graphea1.Singletons.Providers.Global;
 import com.graphea.graphea1.Singletons.Providers.SingletonProvider;
 import com.graphea.graphea1.Singletons.Providers.SingletonWindow;
 import javafx.scene.input.MouseButton;
@@ -9,7 +10,7 @@ public class CirclePressedStrategy implements OnPressedInterfaceStrategy {
 
     private Circle circle;
     private SingletonWindow onMouse = SingletonWindow.getInstance();
-    private SingletonProvider provider = SingletonProvider.getInstance();
+    private Global provider = Global.getInstance();
 
     public CirclePressedStrategy(Circle circle) {
         this.circle = circle;

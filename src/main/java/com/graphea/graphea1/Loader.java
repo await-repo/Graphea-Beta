@@ -31,8 +31,10 @@ public class Loader extends Stage implements Serializable {
             AddCSS css = new AddCSS(scene);
             css.init(singletonStyle.getCssList());
             this.setScene(scene);
+
             onMousePressedContext.mousePressed(new WindowPressedStrategy(root));
             onMouseDraggedContext.mouseDragged(new WindowDraggedStrategy(root, this));
+
         } catch (Exception evt) {
             System.out.println("Cant load window");
             System.err.println(evt.getMessage());
